@@ -14,7 +14,7 @@ while running:
     
     window.fill("red")
     pygame.display.set_icon(window_icon)
-    pygame.display.get_caption("Roguelike Dungeon Crawler")
+    pygame.display.set_caption("Roguelike Dungeon Crawler")
     pygame.display.flip()
     pygame.time.Clock().tick(30)
 
