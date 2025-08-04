@@ -18,7 +18,7 @@ while running:
             running = False
     
     window.fill("red")
-    window.blit("Static/Images/window_icon_sword.png", (0,0))
+    window.blit(window_icon, (0,0))
     pygame.display.flip()
     pygame.time.Clock().tick(30)
 
