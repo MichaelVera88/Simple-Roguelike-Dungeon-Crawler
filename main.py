@@ -18,7 +18,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    window.fill("black")
+    window.fill("red")
     window.blit(game_title, (0,0))
     pygame.display.flip()
     pygame.time.Clock().tick(30)
