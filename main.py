@@ -18,16 +18,15 @@ pygame.display.set_caption("Roguelike Dungeon Crawler")
 running = True
 while running:
 
+    mouse_pos = pygame.mouse.get_pos()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    
-    mouse_pos = pygame.mouse.get_pos()
-
-    if play_button_hitbox.collidepoint(mouse_pos):
-        window.blit(play_button_hover, play_button_hitbox)
-    else:
-        window.blit(play_button, play_button_hitbox)
+        if play_button_hitbox.collidepoint(mouse_pos):
+            window.blit(play_button_hover, play_button_hitbox)
+        else:
+            window.blit(play_button, play_button_hitbox)
 
     window.blit(game_title, (100,50))
     pygame.display.flip()
