@@ -24,10 +24,7 @@ while running:
     
     mouse_pos = pygame.mouse.get_pos()
 
-    if play_button_hitbox.collidepoint(mouse_pos):
-        window.blit(play_button_hover, play_button_hitbox)
-    else:
-        window.blit(play_button, play_button_hitbox)
+    window.blit(play_button, play_button_hitbox)
 
     window.fill("black")
     window.blit(game_title, (100,50))
