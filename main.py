@@ -19,7 +19,7 @@ while running:
             running = False
     
     window.fill("black")
-    window.blit(game_title, (100,150))
+    window.blit(game_title, (100,50))
     pygame.display.flip()
     pygame.time.Clock().tick(30)
 
