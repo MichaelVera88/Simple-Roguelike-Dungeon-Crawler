@@ -25,6 +25,8 @@ while running:
             running = False
         if play_button_hitbox.collidepoint(mouse_pos):
             window.blit(play_button_hover, play_button_hitbox)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print("Clicked Play")
         else:
             window.blit(play_button, play_button_hitbox)
 
