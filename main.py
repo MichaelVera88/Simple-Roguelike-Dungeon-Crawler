@@ -9,7 +9,7 @@ game_title = pygame.image.load("Static/Images/game_title.png").convert_alpha()
 
 play_button = pygame.image.load("Static/Images/UI/play_button.png").convert_alpha()
 play_button_hover = pygame.image.load("Static/Images/UI/play_button_hover.png").convert_alpha()
-play_button_hitbox = play_button.get_rect(topleft=(250,400))
+play_button_hitbox = play_button.get_rect(topleft=(250,450))
 
 pygame.display.set_icon(window_icon)
 pygame.display.set_caption("Roguelike Dungeon Crawler")
@@ -26,7 +26,7 @@ while running:
 
     window.blit(play_button, play_button_hitbox)
 
-    window.fill("black")
+    #window.fill("black")
     window.blit(game_title, (100,50))
     pygame.display.flip()
     pygame.time.Clock().tick(30)
