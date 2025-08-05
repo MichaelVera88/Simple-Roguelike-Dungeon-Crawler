@@ -26,7 +26,7 @@ while running:
 
     window.blit(play_button, play_button_hitbox)
 
-    #window.fill("black")
+    window.fill("black")
     window.blit(game_title, (100,50))
     pygame.display.flip()
     pygame.time.Clock().tick(30)
