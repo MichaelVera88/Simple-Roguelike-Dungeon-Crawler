@@ -7,6 +7,7 @@ window = pygame.display.set_mode((600,500))
 window_icon = pygame.image.load("Static/Images/window_icon_sword.png").convert_alpha()
 game_title = pygame.image.load("Static/Images/game_title.png").convert_alpha()
 
+# Play Button Images (Modulate & make this scalable)
 play_button = pygame.image.load("Static/Images/UI/play_button.png").convert_alpha()
 play_button_hover = pygame.image.load("Static/Images/UI/play_button_hover.png").convert_alpha()
 play_button_hitbox = play_button.get_rect(topleft=(200,300))
@@ -20,6 +21,7 @@ while running:
 
     mouse_pos = pygame.mouse.get_pos()
 
+    # Create objects for different types of screens
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
