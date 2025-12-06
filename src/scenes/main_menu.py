@@ -30,6 +30,9 @@ class MainMenu(base.BaseScene):
         pass
 
     def handle_draw(self, window):
+        # Clear Window
+        window.fill((0,0,0))
+
         # Draw Game Title
         window.blit(self.game_title, (100,50))
 

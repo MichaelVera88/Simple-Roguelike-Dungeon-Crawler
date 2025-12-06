@@ -25,10 +25,10 @@ while running:
     ets = pygame.event.get()
 
     for event in ets:
-        if event == pygame.QUIT:
+        if event.type == pygame.QUIT:
             running = False
 
-    # Create Current Scene
+    # Show Current Scene
     current_scene.handle_events(ets)
     current_scene.handle_updates()
     current_scene.handle_draw(window)
