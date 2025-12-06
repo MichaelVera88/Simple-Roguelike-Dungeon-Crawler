@@ -11,7 +11,7 @@ class BaseScene:
 
         self.next_scene = None
 
-    def events(self, events):
+    def handle_events(self, events):
         """
         Handles Player Inputs.
         
@@ -20,7 +20,7 @@ class BaseScene:
         """
         pass
 
-    def update(self):
+    def handle_updates(self):
         """
         Handles Animations & Logic.
         
@@ -28,7 +28,7 @@ class BaseScene:
         """
         pass
 
-    def draw(self, window):
+    def handle_draw(self, window):
         """
         Handles Game GUI & Visuals
         

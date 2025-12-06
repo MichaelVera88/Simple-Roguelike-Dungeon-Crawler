@@ -20,16 +20,16 @@ class MainMenu(base.BaseScene):
         self.play_button_hover = pygame.image.load(play_button_hover).convert_alpha()
         self.play_button_hitbox = self.play_button.get_rect(topleft=(200,300))
 
-    def events(self, events):
+    def handle_events(self, events):
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.play_button_hitbox.collidepoint(pygame.mouse.get_pos()):
-                    self.next_scene = "gameplay"
+                    self.next_scene = "dungeon_overview"
     
-    def update(self):
+    def handle_updates(self):
         pass
 
-    def draw(self, window):
+    def handle_draw(self, window):
         # Draw Game Title
         window.blit(self.game_title, (100,50))
 

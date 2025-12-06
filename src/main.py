@@ -1,6 +1,6 @@
 import pygame
 from pathlib import Path
-from scenes import main_menu
+from scenes import main_menu, dungeon_overview
 
 # Initialize & Set Game Window
 pygame.init()
@@ -12,10 +12,11 @@ pygame.display.set_caption("Roguelike Dungeon Crawler")
 
 # Game Scenes
 scenes = {
-    "main_menu": main_menu
+    "main_menu": main_menu.MainMenu,
+    "dungeon_overview": dungeon_overview.DungeonOverview
 }
 
-current_scene = main_menu.MainMenu()
+current_scene = scenes["main_menu"]()
 
 # Run Game Window Loop
 running = True
@@ -28,9 +29,9 @@ while running:
             running = False
 
     # Create Current Scene
-    current_scene.events(ets)
-    current_scene.update()
-    current_scene.draw(window)
+    current_scene.handle_events(ets)
+    current_scene.handle_updates()
+    current_scene.handle_draw(window)
 
     # Switch to Next Scene
     if current_scene.next_scene:
