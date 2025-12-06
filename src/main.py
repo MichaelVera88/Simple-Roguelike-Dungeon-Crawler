@@ -1,15 +1,16 @@
 import pygame
+from pathlib import Path
 
 # Initialize & Set Game Window
 pygame.init()
 window = pygame.display.set_mode((600,500))
 
-window_icon = pygame.image.load("Static/Images/window_icon_sword.png").convert_alpha()
-game_title = pygame.image.load("Static/Images/game_title.png").convert_alpha()
+window_icon = pygame.image.load(Path(__file__).parent.parent / "Static" / "Images" / "window_icon_sword.png").convert_alpha()
+game_title = pygame.image.load(Path(__file__).parent.parent / "Static" / "Images" / "game_title.png").convert_alpha()
 
 # Play Button Images (Modulate & make this scalable)
-play_button = pygame.image.load("Static/Images/UI/play_button.png").convert_alpha()
-play_button_hover = pygame.image.load("Static/Images/UI/play_button_hover.png").convert_alpha()
+play_button = pygame.image.load(Path(__file__).parent.parent / "Static" / "Images" / "UI" / "play_button.png").convert_alpha()
+play_button_hover = pygame.image.load(Path(__file__).parent.parent / "Static" / "Images" / "UI" / "play_button_hover.png").convert_alpha()
 play_button_hitbox = play_button.get_rect(topleft=(200,300))
 
 pygame.display.set_icon(window_icon)
