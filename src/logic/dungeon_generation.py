@@ -8,6 +8,7 @@ class Room():
     Node class for all rooms in the dungeon.
 
     Attributes:
+        entered (Boolean): Flag to determine if current room has already been entered by player.
         room_pos (Tuple): Position of the current room on screen
         left_room (Room Object): Pointer to the room on the left side of current room, if available.
         forward_room (Room Object): Pointer to the room on ahead of current room, if available.
@@ -16,6 +17,7 @@ class Room():
     """
 
     def __init__(self, room_pos:tuple=(0,0), left_room:"Room"=None, forward_room:"Room"=None, right_room:"Room"=None):
+        self.entered = False
         self.room_pos = room_pos
         self.left_room = left_room
         self.forward_room = forward_room
@@ -30,6 +32,7 @@ class DungeonGeneration():
         dungeon_start (Room Object): First room of dungeon; Constant across all playthroughs.
         start_dungeon_room_pos (Tuple): First dungeon room's position.
     """
+
     def __init__(self):
         start_dungeon_room_pos = (275,425)
         self.dungeon_start = Room(
@@ -45,8 +48,13 @@ class DungeonGeneration():
         :param self: Self
         :param room: Current Room Object
         """
-        for child in range(len(room.children)):
-            room.children[child] = random.choice([None, Room(None, None, None)])
+        
+        for index, child in enumerate(room.children):
+            match index:
+                case 0:
+                    pass
+                # Finish setting this up properly
+            room.children[index] = random.choice([None, Room(None, None, None)])
 
     def generate_left_room_pos(self, room_pos:tuple) -> tuple:
         """
@@ -55,6 +63,7 @@ class DungeonGeneration():
         :param self: Self
         :param room_pos: Current Room Object Position
         """
+        
         return tuple(x + y for x, y in zip(room_pos, (-50,0)))
     
     def generate_forward_room_pos(self, room_pos:tuple) -> tuple:
@@ -64,6 +73,7 @@ class DungeonGeneration():
         :param self: Self
         :param room_pos: Current Room Object Position
         """
+        
         return tuple(x + y for x, y in zip(room_pos, (0,-50)))
     
     def generate_right_room_pos(self, room_pos:tuple) -> tuple:
@@ -73,6 +83,7 @@ class DungeonGeneration():
         :param self: Self
         :param room_pos: Current Room Object Position
         """
+        
         return tuple(x + y for x, y in zip(room_pos, (50,0)))
     
 

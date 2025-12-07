@@ -12,12 +12,12 @@ pygame.display.set_caption("Roguelike Dungeon Crawler")
 
 # Game Scenes
 scenes = {
-    "main_menu": main_menu.MainMenu,
-    "dungeon_overview": dungeon_overview.DungeonOverview,
-    "dungeon_room": dungeon_room.DungeonRoom
+    "main_menu": main_menu.MainMenu(),
+    "dungeon_overview": dungeon_overview.DungeonOverview(),
+    "dungeon_room": dungeon_room.DungeonRoom()
 }
 
-current_scene = scenes["main_menu"]()
+current_scene = scenes["main_menu"]
 
 # Run Game Window Loop
 running = True
@@ -36,7 +36,8 @@ while running:
 
     # Switch to Next Scene
     if current_scene.next_scene:
-        current_scene = scenes[current_scene.next_scene]()
+        current_scene = scenes[current_scene.next_scene]
+        current_scene.next_scene = None
 
     pygame.display.flip()
     pygame.time.Clock().tick(30)
