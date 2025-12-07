@@ -1,6 +1,6 @@
 import pygame
 from pathlib import Path
-from scenes import main_menu, dungeon_overview
+from scenes import main_menu, dungeon_overview, dungeon_room
 
 # Initialize & Set Game Window
 pygame.init()
@@ -13,7 +13,8 @@ pygame.display.set_caption("Roguelike Dungeon Crawler")
 # Game Scenes
 scenes = {
     "main_menu": main_menu.MainMenu,
-    "dungeon_overview": dungeon_overview.DungeonOverview
+    "dungeon_overview": dungeon_overview.DungeonOverview,
+    "dungeon_room": dungeon_room.DungeonRoom
 }
 
 current_scene = scenes["main_menu"]()

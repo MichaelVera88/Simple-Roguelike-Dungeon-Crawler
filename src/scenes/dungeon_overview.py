@@ -6,6 +6,7 @@ from scenes import base
 from logic import dungeon_generation
 
 class DungeonOverview(base.BaseScene):
+
     def __init__(self):
         super().__init__()
 
@@ -37,6 +38,7 @@ class DungeonOverview(base.BaseScene):
                                 print("Forward Room Selected")
                             case 2:
                                 print("Right Room Selected")
+                        self.next_scene = "dungeon_room"
 
     def handle_updates(self):
         pass 
