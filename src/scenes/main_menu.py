@@ -5,7 +5,7 @@ import pygame
 from scenes import base
 
 class MainMenu(base.BaseScene):
-
+    
     def __init__(self):
         super().__init__()
 

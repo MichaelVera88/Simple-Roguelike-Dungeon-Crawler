@@ -4,8 +4,17 @@
 from pathlib import Path
 
 class BaseScene:
+    """
+    Template class for all other game scenes to inherit. 
 
+    Attributes:
+        next_scene (Scene): Pointer to a scene change.
+    """
+    
     def __init__(self):
+        """
+        Initialization for a scene to have access to Static folder.
+        """
         current_folder = Path(__file__).resolve().parent
         self.static_folder = current_folder.parent.parent / "Static"
 
