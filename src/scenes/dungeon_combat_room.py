@@ -1,16 +1,16 @@
-# Dungeon Room
-# Scene for when a player enters a dungeon room.
+# Dungeon Combat Room
+# Scene for when a player enters a combat room.
 
 import pygame
 from scenes import base
 
-class DungeonRoom(base.BaseScene):
+class DungeonCombatRoom(base.BaseScene):
 
     def __init__(self):
         super().__init__()
 
         # Load Static Files
-        back_button = self.static_folder / "Images" / "UI" / "play_button.png"
+        back_button = self.static_folder / "Images" / "UI" / "play_button_hover.png"
         
         # Static Files to Pygame
         self.back_button = pygame.image.load(back_button).convert_alpha()

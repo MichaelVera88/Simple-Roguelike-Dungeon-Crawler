@@ -2,6 +2,7 @@
 # Scene shows birds-eye-view of the dungeon and available rooms to explore.
 
 import pygame
+import random
 from scenes import base
 from logic import dungeon_generation
 
@@ -38,7 +39,10 @@ class DungeonOverview(base.BaseScene):
                                     adjacent_rooms = self.dg.get_adjacent_rooms(room)
                                     self.dg.create_rooms(room, adjacent_rooms)
                                     self.current_room = room
-                                    self.next_scene = "dungeon_room"
+                                    if random.randint(1, 2) == 1:
+                                        self.next_scene = "dungeon_loot_room"
+                                    else:
+                                        self.next_scene = "dungeon_combat_room"
 
     def handle_updates(self):
         pass 
