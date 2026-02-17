@@ -23,23 +23,22 @@ class DungeonOverview(base.BaseScene):
         # Initialize Dungeon Generation
         self.dg = dungeon_generation.DungeonGeneration()
         self.current_room = self.dg.dungeon_start
+        starting_rooms = self.dg.get_adjacent_rooms(self.current_room)
+        self.dg.create_rooms(self.current_room, starting_rooms)
 
     def handle_events(self, events):
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
-                for index, room in enumerate(self.current_room.children):
-                    dungeon_room_hitbox = self.dungeon_room.get_rect(topleft=room.room_pos)
-                    if dungeon_room_hitbox.collidepoint(pygame.mouse.get_pos()):
-                        if not room.entered:
-                            room.entered = True
-                            match index:
-                                case 0:
-                                    print("Left Room Selected")
-                                case 1:
-                                    print("Forward Room Selected")
-                                case 2:
-                                    print("Right Room Selected")
-                            self.next_scene = "dungeon_room"
+                for row in self.dg.dungeon_layout:
+                    for room in row:
+                        if room is not None:
+                            dungeon_room_hitbox = self.dungeon_room.get_rect(topleft=room.room_pos)
+                            if dungeon_room_hitbox.collidepoint(pygame.mouse.get_pos()) and not room.entered:
+                                    room.entered = True
+                                    adjacent_rooms = self.dg.get_adjacent_rooms(room)
+                                    self.dg.create_rooms(room, adjacent_rooms)
+                                    self.current_room = room
+                                    self.next_scene = "dungeon_room"
 
     def handle_updates(self):
         pass 
@@ -48,18 +47,21 @@ class DungeonOverview(base.BaseScene):
         # Clear Window
         window.fill((0,0,0))
 
-        # Current Dungeon Room
-        window.blit(self.dungeon_room, self.current_room.room_pos)
-
-        # Display connecting rooms from current room
-        for room in self.current_room.children:
-            dungeon_room_hitbox = self.dungeon_room.get_rect(topleft=room.room_pos)
-            if dungeon_room_hitbox.collidepoint(pygame.mouse.get_pos()):
-                if not room.entered:
-                    window.blit(self.dungeon_room_hover, dungeon_room_hitbox)
-                else:
-                    window.blit(self.dungeon_room, room.room_pos)
-            else:
-                window.blit(self.dungeon_room, room.room_pos)
-
-        window.blit(self.player_marker, (288,438))
+        # Display Discovered Rooms
+        for row in self.dg.dungeon_layout:
+            for room in row:
+                if room is not None:
+                    dungeon_room_hitbox = self.dungeon_room.get_rect(topleft=room.room_pos)
+                    if dungeon_room_hitbox.collidepoint(pygame.mouse.get_pos()):
+                        if not room.entered:
+                            window.blit(self.dungeon_room_hover, dungeon_room_hitbox)
+                        else:
+                            window.blit(self.dungeon_room, room.room_pos)
+                    else:
+                        window.blit(self.dungeon_room, room.room_pos)
+        
+        # Current Dungeon Room Player is Inside
+        x_coord, y_coord = self.current_room.room_pos
+        x_coord += 12
+        y_coord += 12
+        window.blit(self.player_marker, (x_coord, y_coord))
