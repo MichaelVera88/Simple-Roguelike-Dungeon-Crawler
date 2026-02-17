@@ -18,7 +18,7 @@ character = player.Player()
 scenes = {
     "main_menu": main_menu.MainMenu(),
     "dungeon_overview": dungeon_overview.DungeonOverview(),
-    "dungeon_loot_room": dungeon_loot_room.DungeonLootRoom(),
+    "dungeon_loot_room": dungeon_loot_room.DungeonLootRoom(character),
     "dungeon_combat_room": dungeon_combat_room.DungeonCombatRoom(character),
     "death_screen": death.Death()
 }
