@@ -30,7 +30,7 @@ class DungeonOverview(base.BaseScene):
     def handle_events(self, events):
         for event in events:
             if event.type == pygame.MOUSEBUTTONDOWN:
-                for row in self.dg.dungeon_layout:
+                for row_index, row in enumerate(self.dg.dungeon_layout):
                     for room in row:
                         if room is not None:
                             dungeon_room_hitbox = self.dungeon_room.get_rect(topleft=room.room_pos)
@@ -39,7 +39,9 @@ class DungeonOverview(base.BaseScene):
                                     adjacent_rooms = self.dg.get_adjacent_rooms(room)
                                     self.dg.create_rooms(room, adjacent_rooms)
                                     self.current_room = room
-                                    if random.randint(1, 2) == 1:
+                                    if row_index == 4:
+                                        self.next_scene = "dungeon_boss_room"
+                                    elif random.randint(1, 2) == 1:
                                         self.next_scene = "dungeon_loot_room"
                                     else:
                                         self.next_scene = "dungeon_combat_room"

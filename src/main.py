@@ -1,7 +1,7 @@
 import pygame
 from pathlib import Path
 from logic import player
-from scenes import main_menu, dungeon_overview, dungeon_loot_room, dungeon_combat_room, death
+from scenes import main_menu, dungeon_overview, dungeon_loot_room, dungeon_combat_room, dungeon_boss_room, winner, death
 
 # Initialize & Set Game Window
 pygame.init()
@@ -20,6 +20,8 @@ scenes = {
     "dungeon_overview": dungeon_overview.DungeonOverview(),
     "dungeon_loot_room": dungeon_loot_room.DungeonLootRoom(character),
     "dungeon_combat_room": dungeon_combat_room.DungeonCombatRoom(character),
+    "dungeon_boss_room": dungeon_boss_room.DungeonBossRoom(character),
+    "win_screen": winner.Winner(),
     "death_screen": death.Death()
 }
 
