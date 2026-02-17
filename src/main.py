@@ -1,5 +1,6 @@
 import pygame
 from pathlib import Path
+from logic import player
 from scenes import main_menu, dungeon_overview, dungeon_loot_room, dungeon_combat_room
 
 # Initialize & Set Game Window
@@ -9,6 +10,9 @@ window_icon = pygame.image.load(Path(__file__).parent.parent / "Static" / "Image
 
 pygame.display.set_icon(window_icon)
 pygame.display.set_caption("Roguelike Dungeon Crawler")
+
+# Initialize Player
+character = player.Player()
 
 # Game Scenes
 scenes = {
@@ -37,7 +41,10 @@ while running:
 
     # Switch to Next Scene
     if current_scene.next_scene:
-        current_scene = scenes[current_scene.next_scene]
+        if current_scene.next_scene == "dungeon_combat_room":
+            current_scene = dungeon_combat_room.DungeonCombatRoom()
+        else:
+            current_scene = scenes[current_scene.next_scene]
         current_scene.next_scene = None
 
     pygame.display.flip()
