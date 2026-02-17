@@ -73,24 +73,46 @@ class DungeonGeneration():
         """
         
         x_room_coord, y_room_coord = room.layout_coords
+        left_gen = forward_gen = right_gen = False
 
         # Check Left Room
-        if rooms[0] == None and 4 > y_room_coord > 0:
-            new_left_room = Room(self.generate_left_room_pos(room.room_pos),
-                                self.generate_left_room_coords(room.layout_coords))
-            self.dungeon_layout[x_room_coord][y_room_coord + 1] = new_left_room
+        if random.randint(1, 2) == 2:
+            if rooms[0] == None and 4 > y_room_coord > 0:
+                new_left_room = Room(self.generate_left_room_pos(room.room_pos),
+                                    self.generate_left_room_coords(room.layout_coords))
+                self.dungeon_layout[x_room_coord][y_room_coord + 1] = new_left_room
+                left_gen = True
+        else:
+            if rooms[0] == None and 4 > y_room_coord > 0:
+                self.dungeon_layout[x_room_coord][y_room_coord + 1] = Room((-100,0), self.generate_left_room_coords(room.layout_coords))
         
         # Check Forward Room
-        if rooms[1] == None and 4 > x_room_coord >= 0:
-            new_forward_room = Room(self.generate_forward_room_pos(room.room_pos),
-                                self.generate_forward_room_coords(room.layout_coords))
-            self.dungeon_layout[x_room_coord + 1][y_room_coord] = new_forward_room
+        if random.randint(1, 2) == 2:
+            if rooms[1] == None and 4 > x_room_coord >= 0:
+                new_forward_room = Room(self.generate_forward_room_pos(room.room_pos),
+                                    self.generate_forward_room_coords(room.layout_coords))
+                self.dungeon_layout[x_room_coord + 1][y_room_coord] = new_forward_room
+                forward_gen = True
+        else:
+            if rooms[1] == None and 4 > x_room_coord >= 0:
+                self.dungeon_layout[x_room_coord + 1][y_room_coord] = Room((-100,0), self.generate_forward_room_coords(room.layout_coords))
 
         # Check Right Room
-        if rooms[2] == None and 4 > y_room_coord > 0:
-            new_right_room = Room(self.generate_right_room_pos(room.room_pos),
-                                self.generate_right_room_coords(room.layout_coords))
-            self.dungeon_layout[x_room_coord][y_room_coord - 1] = new_right_room
+        if random.randint(1, 2) == 2:
+            if rooms[2] == None and 4 > y_room_coord > 0:
+                new_right_room = Room(self.generate_right_room_pos(room.room_pos),
+                                    self.generate_right_room_coords(room.layout_coords))
+                self.dungeon_layout[x_room_coord][y_room_coord - 1] = new_right_room
+                right_gen = True
+        else:
+            if rooms[2] == None and 4 > y_room_coord > 0:
+                self.dungeon_layout[x_room_coord][y_room_coord - 1] = Room((-100,0), self.generate_right_room_coords(room.layout_coords))
+        
+        if not any((left_gen, forward_gen, right_gen)):
+            if rooms[1] == None and 4 > x_room_coord >= 0:
+                new_forward_room = Room(self.generate_forward_room_pos(room.room_pos),
+                                        self.generate_forward_room_coords(room.layout_coords))
+                self.dungeon_layout[x_room_coord + 1][y_room_coord] = new_forward_room
 
     def generate_left_room_pos(self, room_pos:tuple) -> tuple:
         """
