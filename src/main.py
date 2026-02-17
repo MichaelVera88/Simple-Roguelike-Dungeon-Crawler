@@ -19,7 +19,7 @@ scenes = {
     "main_menu": main_menu.MainMenu(),
     "dungeon_overview": dungeon_overview.DungeonOverview(),
     "dungeon_loot_room": dungeon_loot_room.DungeonLootRoom(),
-    "dungeon_combat_room": dungeon_combat_room.DungeonCombatRoom()
+    "dungeon_combat_room": dungeon_combat_room.DungeonCombatRoom(character)
 }
 
 current_scene = scenes["main_menu"]
@@ -42,7 +42,7 @@ while running:
     # Switch to Next Scene
     if current_scene.next_scene:
         if current_scene.next_scene == "dungeon_combat_room":
-            current_scene = dungeon_combat_room.DungeonCombatRoom()
+            current_scene = dungeon_combat_room.DungeonCombatRoom(character)
         else:
             current_scene = scenes[current_scene.next_scene]
         current_scene.next_scene = None
