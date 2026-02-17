@@ -46,7 +46,6 @@ class DungeonCombatRoom(base.BaseScene):
                 self.skeleton.health -= damage
                 self.click_skeleton = False
                 self.turns -= 1
-                print(self.turns)
                 if self.skeleton.health <= 0:
                     self.next_scene = "dungeon_overview"
             elif self.turns == 0:
@@ -60,7 +59,7 @@ class DungeonCombatRoom(base.BaseScene):
             self.click_health_potion_button = False
 
         if self.player.health <= 0:
-            self.next_scene = "main_menu"
+            self.next_scene = "death_screen"
 
     def handle_draw(self, window):
         # Clear Window
